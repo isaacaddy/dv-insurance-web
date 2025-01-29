@@ -9,137 +9,149 @@
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
  </head>
- <body class="bg-gray-100 text-gray-800">
-  <div class="container mx-auto p-6">
-   <div class="flex justify-between items-center mb-6 bg-white p-4 rounded shadow">
-    <div class="flex items-center">
-     <img alt="DVLA logo" class="mr-4 w-12 h-12" src="https://placehold.co/50x50"/>
-     <h1 class="text-3xl font-bold">
-      Administrators
-     </h1>
+ <body class="bg-gray-100 text-gray-800 h-screen">
+  <div class="flex">
+   <!-- Sidebar -->
+   <nav class="w-1/4 bg-green-600 text-white h-screen p-6">
+    <div class="flex items-center mb-8">
+     <img alt="DVLA Logo" class="h-16" src="https://placehold.co/50x50"/>
+     <span class="text-2xl font-bold ml-2">DVLA</span>
     </div>
-    <div class="flex items-center space-x-6">
-     <h2 class="text-2xl font-semibold">
-      Insurance Company Name
-     </h2>
-     <i class="fas fa-bell text-2xl">
-     </i>
-     <i class="fas fa-user-circle text-2xl">
-     </i>
+    <ul class="space-y-4">
+     <li><a class="flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">Dashboard</a></li>
+     <li><a class="flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">Plate Records</a></li>
+     
+    </ul>
+    <div class="absolute bottom-6 left-6">
+     <a class="bg-white text-green-600 px-4 py-2 rounded shadow hover:bg-gray-200 transition duration-300" href="#">Logout</a>
     </div>
-   </div>
-   <div class="flex">
-    <div class="w-1/4 bg-white p-4 rounded shadow min-h-screen">
-     <h3 class="text-xl text-blue-600 mb-6">
-      Validate DV Plate
-     </h3>
-     <h4 class="text-xl font-semibold">
-      Administrators
-     </h4>
-    </div>
-    <div class="w-3/4 ml-4">
-     <div class="flex justify-between items-center mb-6">
-      <button class="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition duration-300">
-       Add Administrators
-      </button>
-      <div class="relative">
-       <input class="border rounded px-4 py-2 w-64" placeholder="Search" type="text"/>
-       <i class="fas fa-search absolute right-3 top-3 text-gray-500">
+   </nav>
+   <!-- Main Content -->
+   <div class="flex-1 p-6">
+    <div class="container mx-auto p-6">
+     <div class="flex justify-between items-center mb-6 bg-white p-4 rounded shadow">
+      <div class="flex items-center">
+       <img alt="DVLA logo" class="mr-4 w-12 h-12" src="https://placehold.co/50x50"/>
+       <h1 class="text-3xl font-bold">
+        Administrators
+       </h1>
+      </div>
+      <div class="flex items-center space-x-6">
+       <h2 class="text-2xl font-semibold">
+        Insurance Company Name
+       </h2>
+       <i class="fas fa-bell text-2xl">
+       </i>
+       <i class="fas fa-user-circle text-2xl">
        </i>
       </div>
      </div>
-     <div class="relative mb-6">
      
+      <div class="w-3/4 ml-4">
+       <div class="flex justify-between items-center mb-6">
+        <button class="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition duration-300">
+         Add Administrators
+        </button>
+        <div class="relative">
+         <input class="border rounded px-4 py-2 w-64" placeholder="Search" type="text"/>
+         <i class="fas fa-search absolute right-3 top-3 text-gray-500">
+         </i>
+        </div>
+       </div>
+       <div class="relative mb-6">
+       
+       </div>
+       <table class="min-w-full bg-white border rounded shadow">
+        <thead>
+         <tr class="bg-gray-200">
+          <th class="py-3 px-4 border-b text-left">
+           <input checked="" type="checkbox"/>
+          </th>
+          <th class="py-3 px-4 border-b text-left">
+           Name
+          </th>
+          <th class="py-3 px-4 border-b text-left">
+           Email
+          </th>
+          <th class="py-3 px-4 border-b text-left">
+           Date Created
+          </th>
+          <th class="py-3 px-4 border-b text-left">
+           Status
+          </th>
+          <th class="py-3 px-4 border-b text-left">
+           Details
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr class="hover:bg-gray-100 transition duration-300">
+          <td class="py-3 px-4 border-b">
+           <input checked="" type="checkbox"/>
+          </td>
+          <td class="py-3 px-4 border-b">
+           22/01/202...
+          </td>
+          <td class="py-3 px-4 border-b">
+           DV 3243A
+          </td>
+          <td class="py-3 px-4 border-b">
+           22/01/202...
+          </td>
+          <td class="py-3 px-4 border-b">
+           Active
+          </td>
+          <td class="py-3 px-4 border-b">
+           <i class="fas fa-info-circle text-blue-600">
+           </i>
+          </td>
+         </tr>
+         <tr class="hover:bg-gray-100 transition duration-300">
+          <td class="py-3 px-4 border-b">
+           <input checked="" type="checkbox"/>
+          </td>
+          <td class="py-3 px-4 border-b">
+           22/01/202...
+          </td>
+          <td class="py-3 px-4 border-b">
+           DV 1243R
+          </td>
+          <td class="py-3 px-4 border-b">
+           22/01/202...
+          </td>
+          <td class="py-3 px-4 border-b">
+           Inactive
+          </td>
+          <td class="py-3 px-4 border-b">
+           <i class="fas fa-info-circle text-blue-600">
+           </i>
+          </td>
+         </tr>
+         <tr class="hover:bg-gray-100 transition duration-300">
+          <td class="py-3 px-4 border-b">
+           <input checked="" type="checkbox"/>
+          </td>
+          <td class="py-3 px-4 border-b">
+           22/01/202...
+          </td>
+          <td class="py-3 px-4 border-b">
+           DV 9876A
+          </td>
+          <td class="py-3 px-4 border-b">
+           22/01/202...
+          </td>
+          <td class="py-3 px-4 border-b">
+           Active
+          </td>
+          <td class="py-3 px-4 border-b">
+           <i class="fas fa-info-circle text-blue-600">
+           </i>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
      </div>
-     <table class="min-w-full bg-white border rounded shadow">
-      <thead>
-       <tr class="bg-gray-200">
-        <th class="py-3 px-4 border-b text-left">
-         <input checked="" type="checkbox"/>
-        </th>
-        <th class="py-3 px-4 border-b text-left">
-         Name
-        </th>
-        <th class="py-3 px-4 border-b text-left">
-         Email
-        </th>
-        <th class="py-3 px-4 border-b text-left">
-         Date Created
-        </th>
-        <th class="py-3 px-4 border-b text-left">
-         Status
-        </th>
-        <th class="py-3 px-4 border-b text-left">
-         Details
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr class="hover:bg-gray-100 transition duration-300">
-        <td class="py-3 px-4 border-b">
-         <input checked="" type="checkbox"/>
-        </td>
-        <td class="py-3 px-4 border-b">
-         22/01/202...
-        </td>
-        <td class="py-3 px-4 border-b">
-         DV 3243A
-        </td>
-        <td class="py-3 px-4 border-b">
-         22/01/202...
-        </td>
-        <td class="py-3 px-4 border-b">
-         Active
-        </td>
-        <td class="py-3 px-4 border-b">
-         <i class="fas fa-info-circle text-blue-600">
-         </i>
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-100 transition duration-300">
-        <td class="py-3 px-4 border-b">
-         <input checked="" type="checkbox"/>
-        </td>
-        <td class="py-3 px-4 border-b">
-         22/01/202...
-        </td>
-        <td class="py-3 px-4 border-b">
-         DV 1243R
-        </td>
-        <td class="py-3 px-4 border-b">
-         22/01/202...
-        </td>
-        <td class="py-3 px-4 border-b">
-         Inactive
-        </td>
-        <td class="py-3 px-4 border-b">
-         <i class="fas fa-info-circle text-blue-600">
-         </i>
-        </td>
-       </tr>
-       <tr class="hover:bg-gray-100 transition duration-300">
-        <td class="py-3 px-4 border-b">
-         <input checked="" type="checkbox"/>
-        </td>
-        <td class="py-3 px-4 border-b">
-         22/01/202...
-        </td>
-        <td class="py-3 px-4 border-b">
-         DV 9876A
-        </td>
-        <td class="py-3 px-4 border-b">
-         22/01/202...
-        </td>
-        <td class="py-3 px-4 border-b">
-         Active
-        </td>
-        <td class="py-3 px-4 border-b">
-         <i class="fas fa-info-circle text-blue-600">
-         </i>
-        </td>
-       </tr>
-      </tbody>
-     </table>
     </div>
    </div>
   </div>
