@@ -6,72 +6,159 @@
     <title>Validate DV Plate</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .sidebar {
+            background-color: #1b4be7ec;
+        }
+        .logo {
+            width: 130px;
+            height: 75px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .nav-link {
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .scrollable-table {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            color: white;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 h-screen">
+<body class="bg-gray-100">
     <div class="flex">
         <!-- Sidebar -->
-        <nav class="w-1/4 bg-green-600 text-white h-screen p-6">
-            <div class="flex items-center mb-8">
-                <img alt="DVLA Logo" class="h-16" src="https://placehold.co/50x50"/>
-                <span class="text-2xl font-bold ml-2">DVLA</span>
+        <div class="sidebar w-72 min-h-screen fixed left-0 top-0 flex flex-col shadow-xl">
+            <div class="p-6 flex-1">
+                <!-- Logo and Title Section -->
+                <div class="flex items-center mb-8">
+                    <img src="/images/oop.png" alt="DVLA Logo" class="logo cursor-pointer w-16 h-16 rounded-full mr-3">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">DVLA</h2>
+                        <p class="text-sm text-white opacity-75">DV Plates Management System</p>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="space-y-3">
+                    <a href="admin.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">dashboard</i>
+                        <span>Administrator</span>
+                    </a>
+                    <a href="platedetails.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Plate Details</span>
+                    </a>
+                    <a href="searchplate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Validate</span>
+                    </a>
+                    <a href="validate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Search Plate</span>
+                </nav>
             </div>
-            <ul class="space-y-4">
-                <li><a class="flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">Dashboard</a></li>
-                <li><a class="flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">Plate Records</a></li>
-               
-            </ul>
-            <div class="absolute bottom-6 left-6">
-                <a class="bg-white text-green-600 px-4 py-2 rounded shadow hover:bg-gray-200 transition duration-300" href="#">Logout</a>
+            <!-- Footer Section -->
+            <div class="p-6">
+                <a href="index.html" class="flex items-center justify-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-5 py-3 rounded-lg shadow-lg hover:from-blue-500 hover:to-teal-500 transform hover:scale-105 transition duration-200 ease-in-out">
+                    <i class="material-icons mr-3">logout</i>
+                    <span>Logout</span>
+                </a>
+                <div class="text-center text-white text-sm mt-4 opacity-75">
+                    © 2024 DVLA Club
+                </div>
             </div>
-        </nav>
+        </div>
+
         <!-- Main Content -->
-        <div class="flex-1 p-6">
-            <header class="flex justify-between items-center p-4 bg-white shadow-md">
-                <img alt="DVLA Logo" class="h-10" src="https://placehold.co/50x50"/>
+        <div class="flex-1 ml-72">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <img alt="DVLA Logo" class="h-10" src="/images/oop.png"/>
                 <h1 class="text-xl font-bold">Insurance Company Name</h1>
                 <div class="flex items-center space-x-4">
-                    <i class="fas fa-bell text-xl"></i>
-                    <i class="fas fa-user-circle text-2xl"></i>
+                    <i class="fas fa-bell text-xl text-gray-600 cursor-pointer hover:text-gray-800"></i>
+                    <i class="fas fa-user-circle text-2xl text-gray-600 cursor-pointer hover:text-gray-800"></i>
                 </div>
             </header>
-            <main class="p-4 flex">
-                <section class="w-3/4 bg-white p-6 shadow-md rounded-lg ml-4">
-                    <div class="flex justify-between items-center border-b pb-2 mb-4">
-                        <div class="flex space-x-4">
-                            <a class="text-blue-600 border-b-2 border-blue-600 pb-1" href="#">Validate</a>
-                            <a class="text-gray-600 pb-1" href="#">History</a>
+
+            <!-- Main Content Area -->
+            <main class="p-6">
+                <section class="bg-white p-6 shadow-md rounded-lg">
+                    <div class="flex justify-between items-center border-b pb-4 mb-6">
+                        <div class="flex space-x-6">
+                            <a class="text-blue-600 border-b-2 border-blue-600 pb-1 font-medium" href="#">Validate</a>
+                            <a class="text-gray-600 hover:text-gray-800 transition-colors duration-200" href="#">History</a>
                         </div>
                         <div class="relative">
-                            <input class="border rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Search by Plate Number" type="text"/>
-                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-500"></i>
+                            <input class="border rounded-full py-2 px-4 pl-10 w-64 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
+                                   placeholder="Search by Plate Number" 
+                                   type="text"/>
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
                         </div>
                     </div>
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="text-gray-600">
-                                <th class="py-2"><i class="fas fa-check-square"></i> Date</th>
-                                <th class="py-2">DV Plate Number</th>
-                                <th class="py-2">Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-t">
-                                <td class="py-2 flex items-center"><i class="fas fa-check-square mr-2"></i> 22/01/2025 10:00am</td>
-                                <td class="py-2">DV 3243A</td>
-                                <td class="py-2"><i class="fas fa-info-circle text-blue-600"></i></td>
-                            </tr>
-                            <tr class="border-t">
-                                <td class="py-2 flex items-center"><i class="fas fa-check-square mr-2"></i> 22/01/2025 08:35am</td>
-                                <td class="py-2">DV 1243R</td>
-                                <td class="py-2"><i class="fas fa-info-circle text-blue-600"></i></td>
-                            </tr>
-                            <tr class="border-t">
-                                <td class="py-2 flex items-center"><i class="fas fa-check-square mr-2"></i> 22/01/2025 08:27am</td>
-                                <td class="py-2">DV 9876A</td>
-                                <td class="py-2"><i class="fas fa-info-circle text-blue-600"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="scrollable-table">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-gray-600 border-b">
+                                    <th class="py-3 px-4">Date</th>
+                                    <th class="py-3 px-4">DV Plate Number</th>
+                                    <th class="py-3 px-4">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <i class="fas fa-check-square mr-2 text-green-500"></i>
+                                        22/01/2025 10:00am
+                                    </td>
+                                    <td class="py-3 px-4">DV 3243A</td>
+                                    <td class="py-3 px-4">
+                                        <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <i class="fas fa-check-square mr-2 text-green-500"></i>
+                                        22/01/2025 08:35am
+                                    </td>
+                                    <td class="py-3 px-4">DV 1243R</td>
+                                    <td class="py-3 px-4">
+                                        <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <i class="fas fa-check-square mr-2 text-green-500"></i>
+                                        22/01/2025 08:27am
+                                    </td>
+                                    <td class="py-3 px-4">DV 9876A</td>
+                                    <td class="py-3 px-4">
+                                        <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </main>
         </div>

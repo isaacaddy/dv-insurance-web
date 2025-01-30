@@ -1,108 +1,171 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Validate DV Plate - Details
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
- </head>
- <body class="bg-gray-100 h-screen">
-  <div class="flex">
-   <!-- Sidebar -->
-   <nav class="w-1/8 bg-green-600 text-white h-screen p-6">
-    <div class="flex items-center mb-8">
-     <img alt="DVLA Logo" class="h-16" src="/images/oop.png"/>
-     <div class="ml-2">
-      <span class="text-2xl font-bold">DVLA</span>
-      <p class="text-sm">Insure your dv plates</p>
-     </div>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Validate DV Plate - Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .sidebar {
+            background-color: #1b4be7ec;
+        }
+        .logo {
+            width: 130px;
+            height: 75px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .nav-link {
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            color: white;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .input-field {
+            @apply border rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar w-72 min-h-screen fixed left-0 top-0 flex flex-col shadow-xl">
+            <div class="p-6 flex-1">
+                <!-- Logo and Title Section -->
+                <div class="flex items-center mb-8">
+                    <img src="/images/oop.png" alt="DVLA Logo" class="logo cursor-pointer w-16 h-16 rounded-full mr-3">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">DVLA</h2>
+                        <p class="text-sm text-white opacity-75">DV Plates Management System</p>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="space-y-3">
+                    <a href="admin.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">dashboard</i>
+                        <span>Administrator</span>
+                    </a>
+                    <a href="platedetails.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Plate Details</span>
+                    </a>
+                    <a href="searchplate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Validate</span>
+                    </a>
+                    <a href="validate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Search Plate</span>
+                </nav>
+            </div>
+            <!-- Footer Section -->
+            <div class="p-6">
+                <a href="index.html" class="flex items-center justify-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-5 py-3 rounded-lg shadow-lg hover:from-blue-500 hover:to-teal-500 transform hover:scale-105 transition duration-200 ease-in-out">
+                    <i class="material-icons mr-3">logout</i>
+                    <span>Logout</span>
+                </a>
+                <div class="text-center text-white text-sm mt-4 opacity-75">
+                    © 2024 DVLA Club
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-72">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="mr-4">
+                        <i class="fas fa-arrow-left text-2xl text-gray-600 hover:text-gray-800"></i>
+                    </a>
+                    <h1 class="text-2xl font-bold">Validate DV Plate - Details</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Insurance Company Name</span>
+                    <i class="fas fa-bell text-xl text-gray-600 cursor-pointer hover:text-gray-800"></i>
+                    <i class="fas fa-user-circle text-2xl text-gray-600 cursor-pointer hover:text-gray-800"></i>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="p-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <!-- Plate Details Section -->
+                    <section class="mb-8">
+                        <h2 class="text-xl font-bold mb-6 text-gray-800">Plate Details</h2>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">DV Plate Number</label>
+                                <input type="text" class="input-field" placeholder="Enter plate number"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">Form D Serial Number</label>
+                                <input type="text" class="input-field" placeholder="Enter serial number"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">Factory Serial Number</label>
+                                <input type="text" class="input-field" placeholder="Enter factory number"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">DVLA Serial Number</label>
+                                <input type="text" class="input-field" placeholder="Enter DVLA number"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">Validity</label>
+                                <input type="text" class="input-field" placeholder="Enter validity"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">Activation Status</label>
+                                <input type="text" class="input-field" placeholder="Enter status"/>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Insurance Details Section -->
+                    <section class="mb-8">
+                        <h2 class="text-xl font-bold mb-6 text-gray-800">Insurance Details</h2>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">Policy Number</label>
+                                <input type="text" class="input-field" placeholder="Enter policy number"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-gray-700 font-medium">Expiry Date</label>
+                                <input type="text" class="input-field" placeholder="Enter expiry date"/>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-4">
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md">
+                            Issue Policy
+                        </button>
+                        <button class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-200 shadow-md">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
-    <ul class="p-8 space-y-4">
-     <li><a class="text-xl flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">Dashboard</a></li>
-     <li><a class="text-xl flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">Plate Records</a></li>
-     
-    </ul>
-    <div class="absolute bottom-6 left-6">
-     <a class="bg-white text-green-600 px-4 py-2 rounded shadow hover:bg-gray-200 transition duration-300" href="#">Logout</a>
-    </div>
-   </nav>
-   <!-- Main Content -->
-   <div class="flex-1 p-6">
-    <div class="flex justify-between items-center mb-8">
-     <h1 class="text-4xl font-bold">
-      Validate DV Plate - Details
-     </h1>
-     <div class="flex items-center">
-      <span class="mr-4">
-       Insurance Company Name
-      </span>
-      <i class="fas fa-bell text-xl mr-4">
-      </i>
-      <i class="fas fa-user-circle text-xl">
-      </i>
-     </div>
-    </div>
-    <div class="flex mr-8 items-start mb-8">
-     <i class="fas fa-arrow-left text-2xl mr-4">
-     </i>
-     <div>
-      <h2 class="text-lg font-bold mb-4">
-       Plate Details
-      </h2>
-      <div class="grid grid-cols-2 gap-4 mb-8">
-       <label>
-        DV Plate Number
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-       <label>
-        Form D Serial Number
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-       <label>
-        Factory Serial Number
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-       <label>
-        DVLA Serial Number
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-       <label>
-        Validity
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-       <label>
-        Activation Status
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-      </div>
-      <h2 class="text-lg font-bold mb-4">
-       Insurance Details
-      </h2>
-      <div class="grid grid-cols-2 gap-4 mb-8">
-       <label>
-        Policy Number
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-       <label>
-        Expiry Date
-       </label>
-       <input class="border p-2" placeholder="Add text" type="text"/>
-      </div>
-      <div class="flex space-x-4">
-       <button class="bg-blue-600 text-white px-4 py-2">
-        Issue Policy
-       </button>
-       <button class="bg-blue-600 text-white px-4 py-2">
-        Close
-       </button>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div>
- </body>
+</body>
 </html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Validate DV Plate</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-6">
+    <div class="flex justify-between items-center border-b pb-4 mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">Validate DV Plate</h1>
+      <div class="flex items-center space-x-6">
+        <img alt="DVLA Logo" class="h-12 rounded-full" src="https://placehold.co/50x50"/>
+        <span class="text-xl font-semibold text-gray-800">Insurance Company Name</span>
+        <i class="fas fa-bell text-2xl text-gray-600 hover:text-gray-800 transition duration-300"></i>
+        <i class="fas fa-user-circle text-3xl text-gray-600 hover:text-gray-800 transition duration-300"></i>
+      </div>
+    </div>
+    <div class="flex">
+      <nav class="w-1/4 bg-blue-600 text-white h-screen p-6">
+        <div class="flex items-center mb-8">
+          <img alt="DVLA Logo" class="h-16" src="https://placehold.co/50x50"/>
+          <span class="text-2xl font-bold ml-2">DVLA</span>
+        </div>
+        <ul class="space-y-4">
+          <li>
+            <a class="flex items-center hover:bg-blue-700 p-2 rounded transition duration-300" href="#">
+              <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center hover:bg-blue-700 p-2 rounded transition duration-300" href="#">
+              <i class="fas fa-car mr-2"></i> Plate Records
+            </a>
+          </li>
+        </ul>
+        <div class="absolute bottom-6 left-6">
+          <a class="bg-white text-blue-600 px-4 py-2 rounded shadow hover:bg-gray-200 transition duration-300" href="#">Logout</a>
+        </div>
+      </nav>
+      <div class="w-3/4 ml-8 bg-white p-8 rounded-lg shadow-lg">
+        <div class="flex space-x-8 mb-6">
+          <a class="text-blue-600 border-b-2 border-blue-600 pb-1 text-lg" href="#">Validate</a>
+          <a class="text-gray-700 pb-1 text-lg hover:text-gray-900 transition duration-300" href="#">History</a>
+        </div>
+        <div>
+          <label class="block text-xl font-semibold mb-4 text-gray-800" for="dv-plate">Enter DV Plate Number</label>
+          <input class="border border-gray-300 p-3 w-full mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="dv-plate" placeholder="Add text" type="text"/>
+          <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">Validate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

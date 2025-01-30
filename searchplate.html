@@ -1,72 +1,114 @@
-<html>
- <head>
-  <title>
-   Validate DV Plate
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-gray-100">
-  <div class="container mx-auto p-6">
-   <div class="flex justify-between items-center border-b pb-4 mb-8">
-    <h1 class="text-3xl font-bold text-gray-800">
-     Validate DV Plate
-    </h1>
-    <div class="flex items-center space-x-6">
-     <img alt="DVLA Logo" class="h-12 rounded-full" src="https://placehold.co/50x50"/>
-     <span class="text-xl font-semibold text-gray-800">
-      Insurance Company Name
-     </span>
-     <i class="fas fa-bell text-2xl text-gray-600 hover:text-gray-800 transition duration-300">
-     </i>
-     <i class="fas fa-user-circle text-3xl text-gray-600 hover:text-gray-800 transition duration-300">
-     </i>
-    </div>
-   </div>
-   <div class="flex">
-    <nav class="w-1/4 bg-green-600 text-white h-screen p-6">
-        <div class="flex items-center mb-8">
-            <img alt="DVLA Logo" class="h-16" src="https://placehold.co/50x50"/>
-            <span class="text-2xl font-bold ml-2">DVLA</span>
-        </div>
-        <ul class="space-y-4">
-            <li>
-                <a class="flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .sidebar {
+            background-color: #1b4be7ec;
+        }
+        .logo {
+            width: 130px;
+            height: 75px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            color: white;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover {
+            opacity: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar w-72 min-h-screen fixed left-0 top-0 flex flex-col shadow-xl">
+            <div class="p-6 flex-1">
+                <!-- Logo and Title Section -->
+                <div class="flex items-center mb-8">
+                    <img src="/images/oop.png" alt="DVLA Logo" class="logo cursor-pointer w-16 h-16 rounded-full mr-3">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">DVLA</h2>
+                        <p class="text-sm text-white opacity-75">DV Plates Management System</p>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="space-y-3">
+                    <a href="admin.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">dashboard</i>
+                        <span>Administrator</span>
+                    </a>
+                    <a href="platedetails.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Plate Details</span>
+                    </a>
+                    <a href="searchplate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Validate</span>
+                    </a>
+                    <a href="validate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3">description</i>
+                        <span>Search Plate</span>
+                    </a>
+                </nav>
+            </div>
+            <!-- Footer Section -->
+            <div class="p-6">
+                <a href="index.html" class="flex items-center justify-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-5 py-3 rounded-lg shadow-lg hover:from-blue-500 hover:to-teal-500 transform hover:scale-105 transition duration-200 ease-in-out">
+                    <i class="material-icons mr-3">logout</i>
+                    <span>Logout</span>
                 </a>
-            </li>
-            <li>
-                <a class="flex items-center hover:bg-green-700 p-2 rounded transition duration-300" href="#">
-                    <i class="fas fa-car mr-2"></i> Plate Records
-                </a>
-            </li>
-           
-        </ul>
-        <div class="absolute bottom-6 left-6">
-            <a class="bg-white text-green-600 px-4 py-2 rounded shadow hover:bg-gray-200 transition duration-300" href="#">Logout</a>
+                <div class="text-center text-white text-sm mt-4 opacity-75">
+                    © 2024 DVLA Club
+                </div>
+            </div>
         </div>
-    </nav>
-    <div class="w-3/4 ml-8 bg-white p-8 rounded-lg shadow-lg">
-     <div class="flex space-x-8 mb-6">
-      <a class="text-blue-600 border-b-2 border-blue-600 pb-1 text-lg" href="#">
-       Validate
-      </a>
-      <a class="text-gray-700 pb-1 text-lg hover:text-gray-900 transition duration-300" href="#">
-       History
-      </a>
-     </div>
-     <div>
-      <label class="block text-xl font-semibold mb-4 text-gray-800" for="dv-plate">
-       Enter DV Plate Number
-      </label>
-      <input class="border border-gray-300 p-3 w-full mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="dv-plate" placeholder="Add text" type="text"/>
-      <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
-       Validate
-      </button>
-     </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 ml-72">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <img alt="DVLA Logo" class="h-10" src="/images/oop.png"/>
+                <h1 class="text-xl font-bold">Insurance Company Name</h1>
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-bell text-xl text-gray-600 cursor-pointer hover:text-gray-800"></i>
+                    <i class="fas fa-user-circle text-2xl text-gray-600 cursor-pointer hover:text-gray-800"></i>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="p-6">
+                <section class="bg-white p-6 shadow-md rounded-lg">
+                    <div class="flex justify-between items-center border-b pb-4 mb-6">
+                        <div class="flex space-x-6">
+                            <a class="text-blue-600 border-b-2 border-blue-600 pb-1 font-medium" href="#">Validate</a>
+                            <a class="text-gray-600 hover:text-gray-800 transition-colors duration-200" href="#">History</a>
+                        </div>
+                    </div>
+                    <!-- Your existing content here -->
+                    <div>
+                        <label class="block text-xl font-semibold mb-4 text-gray-800" for="dv-plate">Enter DV Plate Number</label>
+                        <input class="border border-gray-300 p-3 w-full mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="dv-plate" placeholder="Add text" type="text"/>
+                        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">Validate</button>
+                      </div>
+                </section>
+            </main>
+        </div>
     </div>
-   </div>
-  </div>
- </body>
+</body>
 </html>
