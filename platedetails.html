@@ -40,7 +40,12 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         .input-field {
-            @apply border rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+            @apply border-gray-300 p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+            background-color: white;
+            height: 45px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 0.75rem 1.25rem; /* Increased right padding to move placeholder text
         }
     </style>
 </head>
@@ -107,59 +112,58 @@
 
             <!-- Main Content Area -->
             <main class="p-6">
-                <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="bg-white m-auto w-[72%] rounded-lg shadow-md p-6">
                     <!-- Plate Details Section -->
                     <section class="mb-8">
-                        <h2 class="text-xl font-bold mb-6 text-gray-800">Plate Details</h2>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">DV Plate Number</label>
-                                <input type="text" class="input-field" placeholder="Enter plate number"/>
+                        <div class="space-y-6">
+                            <div class="grid rounded grid-cols-2 items-center gap-2 border-gray-300">
+                                <label class="block text-gray-700 text-lg">DV Plate Number</label>
+                                <input type="text" class="input-field" placeholder="DV Plate Number"/>
                             </div>
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">Form D Serial Number</label>
-                                <input type="text" class="input-field" placeholder="Enter serial number"/>
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">Form D Serial Number</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">Factory Serial Number</label>
-                                <input type="text" class="input-field" placeholder="Enter factory number"/>
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">Factory Serial Number</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">DVLA Serial Number</label>
-                                <input type="text" class="input-field" placeholder="Enter DVLA number"/>
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">DVLA Serial Number</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">Validity</label>
-                                <input type="text" class="input-field" placeholder="Enter validity"/>
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">Validity</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">Activation Status</label>
-                                <input type="text" class="input-field" placeholder="Enter status"/>
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">Activation Status</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
                         </div>
                     </section>
 
                     <!-- Insurance Details Section -->
                     <section class="mb-8">
-                        <h2 class="text-xl font-bold mb-6 text-gray-800">Insurance Details</h2>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">Policy Number</label>
-                                <input type="text" class="input-field" placeholder="Enter policy number"/>
+                        <h2 class="text-xl font-bold mb-6">Insurance Details</h2>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">Policy Number</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
-                            <div class="space-y-2">
-                                <label class="block text-gray-700 font-medium">Expiry Date</label>
-                                <input type="text" class="input-field" placeholder="Enter expiry date"/>
+                            <div class="grid grid-cols-2 items-center gap-2">
+                                <label class="block text-gray-700 text-lg">Expiry Date</label>
+                                <input type="text" class="input-field" placeholder="Add text"/>
                             </div>
                         </div>
                     </section>
 
                     <!-- Action Buttons -->
                     <div class="flex space-x-4">
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md">
+                        <button class="bg-blue-600 text-white px-8 py-2 rounded hover:bg-blue-700 transition duration-200">
                             Issue Policy
                         </button>
-                        <button class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-200 shadow-md">
+                        <button class="bg-blue-600 text-white px-8 py-2 rounded hover:bg-blue-700 transition duration-200">
                             Close
                         </button>
                     </div>
@@ -168,4 +172,4 @@
         </div>
     </div>
 </body>
-</html>
+</html>     
