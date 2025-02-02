@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         .sidebar {
-            background-color: #1b4be7ec;
+            background-color: #1a237e; /* Deep blue color */
+            background: linear-gradient(180deg, #1a237e 0%, #283593 100%);
         }
         .logo {
             width: 130px;
@@ -68,6 +69,11 @@
         .close:hover {
             color: #000;
         }
+        .sidebar-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -85,7 +91,7 @@
                 </div>
                 <!-- Navigation Links -->
                 <nav class="space-y-3">
-                    <a href="admin.html" class="sidebar-link p-3 rounded-lg">
+                    <a href="admin.html" class="sidebar-link p-3 rounded-lg active">
                         <i class="material-icons mr-3">dashboard</i>
                         <span>Administrator</span>
                     </a>

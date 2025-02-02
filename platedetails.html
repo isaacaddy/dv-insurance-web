@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         .sidebar {
-            background-color: #1b4be7ec;
+            background-color: #1a237e; /* Deep blue color */
+            background: linear-gradient(180deg, #1a237e 0%, #283593 100%);
         }
         .logo {
             width: 130px;
@@ -45,7 +46,12 @@
             height: 45px;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
-            padding: 0.75rem 1.25rem; /* Increased right padding to move placeholder text
+            padding: 0.75rem 1.25rem; /* Increased right padding to move placeholder text */
+        }
+        .sidebar-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+            opacity: 1;
         }
     </style>
 </head>
@@ -68,7 +74,7 @@
                         <i class="material-icons mr-3">dashboard</i>
                         <span>Administrator</span>
                     </a>
-                    <a href="platedetails.html" class="sidebar-link p-3 rounded-lg">
+                    <a href="platedetails.html" class="sidebar-link p-3 rounded-lg active">
                         <i class="material-icons mr-3">description</i>
                         <span>Plate Details</span>
                     </a>
@@ -79,6 +85,7 @@
                     <a href="validate.html" class="sidebar-link p-3 rounded-lg">
                         <i class="material-icons mr-3">description</i>
                         <span>Search Plate</span>
+                    </a>
                 </nav>
             </div>
             <!-- Footer Section -->
