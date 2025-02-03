@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS build
+FROM --platform=linux/arm64 node:lts-alpine AS build
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm install
 
-FROM nginx:1.27.3-alpine
+FROM --platform=linux/arm64 nginx:1.27.3-alpine
 
 COPY --from=build /app /usr/share/nginx/html
 
