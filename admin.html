@@ -119,6 +119,10 @@
                         </i>
                         <span>Search Plate</span>
                     </a>
+                    <a href="contact.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons">contact_mail</i>
+                        <span class="nav-text ml-3">Contact Admin</span>
+                    </a>
                 </nav>
             </div>
             <!-- Footer Section -->
@@ -203,6 +207,67 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- Add this after the existing table section -->
+                <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Access Requests</h2>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-200">
+                                <i class="material-icons text-sm mr-1">check_circle</i>
+                                Approved
+                            </button>
+                            <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-200">
+                                <i class="material-icons text-sm mr-1">cancel</i>
+                                Rejected
+                            </button>
+                            <button class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition duration-200">
+                                <i class="material-icons text-sm mr-1">pending</i>
+                                Pending
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr class="bg-gray-50 border-b">
+                                    <th class="py-3 px-4 text-left font-medium text-gray-700">Date</th>
+                                    <th class="py-3 px-4 text-left font-medium text-gray-700">Name</th>
+                                    <th class="py-3 px-4 text-left font-medium text-gray-700">Company</th>
+                                    <th class="py-3 px-4 text-left font-medium text-gray-700">Email</th>
+                                    <th class="py-3 px-4 text-left font-medium text-gray-700">Status</th>
+                                    <th class="py-3 px-4 text-left font-medium text-gray-700">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50 transition duration-200">
+                                    <td class="py-3 px-4 border-b">22/01/2024</td>
+                                    <td class="py-3 px-4 border-b">John Doe</td>
+                                    <td class="py-3 px-4 border-b">ABC Insurance</td>
+                                    <td class="py-3 px-4 border-b">john@abc.com</td>
+                                    <td class="py-3 px-4 border-b">
+                                        <span class="px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm">Pending</span>
+                                    </td>
+                                    <td class="py-3 px-4 border-b">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800" title="View Details">
+                                                <i class="material-icons text-xl">visibility</i>
+                                            </button>
+                                            <button class="text-green-600 hover:text-green-800" title="Approve">
+                                                <i class="material-icons text-xl">check_circle</i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800" title="Reject">
+                                                <i class="material-icons text-xl">cancel</i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
@@ -250,6 +315,50 @@
         </div>
     </div>
 
+    <!-- Request Details Modal -->
+    <div id="requestModal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-6">Request Details</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold mb-2">Personal Information</h3>
+                    <p><span class="font-medium">Name:</span> <span id="modalName"></span></p>
+                    <p><span class="font-medium">Email:</span> <span id="modalEmail"></span></p>
+                    <p><span class="font-medium">Phone:</span> <span id="modalPhone"></span></p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Company Information</h3>
+                    <p><span class="font-medium">Company:</span> <span id="modalCompany"></span></p>
+                    <p><span class="font-medium">Job Title:</span> <span id="modalJob"></span></p>
+                    <p><span class="font-medium">Address:</span> <span id="modalAddress"></span></p>
+                </div>
+                <div class="col-span-2">
+                    <h3 class="font-semibold mb-2">Request Details</h3>
+                    <p class="mb-2"><span class="font-medium">Purpose of Access:</span></p>
+                    <p id="modalPurpose" class="bg-gray-50 p-3 rounded"></p>
+                </div>
+                <div class="col-span-2">
+                    <h3 class="font-semibold mb-2">Additional Comments</h3>
+                    <p id="modalComments" class="bg-gray-50 p-3 rounded"></p>
+                </div>
+                <div class="col-span-2 border-t pt-4 mt-4">
+                    <div class="flex justify-end space-x-4">
+                        <button class="px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition duration-200">
+                            Close
+                        </button>
+                        <button class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-200">
+                            Approve Request
+                        </button>
+                        <button class="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-200">
+                            Reject Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Get modal elements
         const modal = document.getElementById('adminModal');
@@ -287,6 +396,26 @@
                 modal.style.display = 'none';
             }
         }
+
+        // Add this to your existing script section
+        const requestModal = document.getElementById('requestModal');
+        const viewButtons = document.querySelectorAll('[title="View Details"]');
+
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Populate modal with request details
+                document.getElementById('modalName').textContent = 'John Doe';
+                document.getElementById('modalEmail').textContent = 'john@abc.com';
+                document.getElementById('modalPhone').textContent = '+233 123 456 789';
+                document.getElementById('modalCompany').textContent = 'ABC Insurance';
+                document.getElementById('modalJob').textContent = 'Insurance Agent';
+                document.getElementById('modalAddress').textContent = '123 Main St, Accra';
+                document.getElementById('modalPurpose').textContent = 'Need access to validate DV plates for insurance purposes.';
+                document.getElementById('modalComments').textContent = 'Requesting urgent access for upcoming insurance renewals.';
+                
+                requestModal.style.display = 'block';
+            });
+        });
     </script>
 </body>
 </html>
