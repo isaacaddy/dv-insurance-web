@@ -1,3 +1,4 @@
+<!----------------------------------------------------------------------------------------------------------------  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,248 +9,207 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .sidebar {
-            background-color: #1a237e;
-            background: linear-gradient(180deg, #1a237e 0%, #283593 100%);
-            transition: all 0.3s ease;
+        body {
+            background-color: #f7fafc; /* Tailwind's gray-100 */
         }
-        .logo {
-            width: 130px;
-            height: 75px;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
         }
-        .logo:hover {
-            transform: scale(1.1);
-        }
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            color: white;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-        .sidebar-link:hover {
-            opacity: 1;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .sidebar-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-left: 4px solid white;
-            opacity: 1;
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 5rem !important;
-            }
-            .nav-text {
-                display: none;
-            }
-            .logo-text {
-                display: none;
-            }
-            .main-content {
-                margin-left: 5rem !important;
-            }
-            .material-icons {
-                margin-right: 0 !important;
-            }
-            .sidebar-link {
-                justify-content: center;
-            }
-            .footer-text {
-                display: none;
-            }
-            .logout-text {
-                display: none;
-            }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 8px;
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="flex">
-        <!-- Sidebar -->
-        <div class="sidebar w-72 min-h-screen fixed left-0 top-0 flex flex-col shadow-xl">
-            <div class="p-6 flex-1">
-                <!-- Logo and Title Section -->
-                <div class="flex items-center mb-8">
-                    <img src="/images/oop.png" alt="DVLA Logo" class="logo cursor-pointer w-16 h-16 rounded-full mr-3">
-                    <div class="logo-text">
-                        <h2 class="text-2xl font-bold text-white">DVLA</h2>
-                        <p class="text-sm text-white opacity-75">DV Plates Management System</p>
-                    </div>
-                </div>
-                <!-- Navigation Links -->
-                <nav class="space-y-3">
-                    <a href="admin.html" class="sidebar-link p-3 rounded-lg ">
-                        <i class="material-icons mr-3">dashboard</i>
-                        <span>Administrator</span>
-                    </a>
-                    <a href="platedetails.html" class="sidebar-link p-3 rounded-lg">
-                        <i class="material-icons mr-3">description</i>
-                        <span>Plate Details</span>
-                    </a>
-                    <a href="searchplate.html" class="sidebar-link p-3 rounded-lg">
-                        <i class="material-icons mr-3">description</i>
-                        <span>Search Plates</span>
-                    </a>
-                    <a href="validate.html" class="sidebar-link p-3 rounded-lg">
-                        <i class="material-icons mr-3">description</i>
-                        <span>Validate</span>
-                    </a>
-                    <a href="contact.html" class="sidebar-link p-3 rounded-lg active">
-                        <i class="material-icons">contact_mail</i>
-                        <span class="nav-text ml-3">Contact Admin</span>
-                    </a>
-                </nav>
-            </div>
-             <!-- Footer Section -->
-             <div class="p-6">
-                <a href="index.html" class="flex items-center justify-center bg-gradient-to-r from-blue-600 to-teal-600 text-white px-5 py-3 rounded-lg shadow-lg hover:from-blue-500 hover:to-teal-500 transform hover:scale-105 transition duration-200 ease-in-out">
-                    <i class="material-icons mr-3">logout</i>
-                    <span>Logout</span>
-                </a>
-                <div class="text-center text-white text-sm mt-4 opacity-75">
-                    © 2024 DVLA Club
-                </div>
+<body>
+    <div class="container mx-auto p-6">
+        <!-- Logo and Title Section -->
+        <div class="flex items-center mb-8">
+            <img src="/images/oop.png" alt="DVLA Logo" class="h-16 w-16 rounded-full mr-3 shadow-lg">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">DVLA</h2>
+                <p class="text-sm text-gray-600">DV Plates Management System</p>
             </div>
         </div>
-        </div>
 
-        <!-- Main Content -->
-        <div class="flex-1 ml-72 w-[100%] main-content">
-            <main class="p-6">
-                <!-- Header Section -->
-                <div class="max-w-4xl bg-white mb-8">
-                    <h1 class="text-3xl font-bold text-gray-800">Request System Access</h1>
-                    <p class="mt-2 text-gray-600">Fill out the form below to request access credentials for the DV Plates Management System.</p>
+        <main class="p-6">
+            <!-- Request System Access Section -->
+            <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Request System Access</h1>
+                <p class="text-lg text-gray-600 mb-4">Fill out the form below to request access credentials for the DV Plates Management System.</p>
+                <div class="border-l-4 border-blue-600 pl-4 mb-4">
+                    <p class="text-gray-700">Please ensure that all information provided is accurate to expedite your request.</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <!-- Top Banner -->
+                <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
+                    <h2 class="text-3xl font-semibold">Contact Administrator</h2>
+                    <p class="mt-2 opacity-90">Please provide accurate information to expedite your request</p>
                 </div>
 
-                <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-                    <!-- Top Banner -->
-                    <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
-                        <h2 class="text-2xl font-semibold">Contact Administrator</h2>
-                        <p class="mt-2 opacity-90">Please provide accurate information to expedite your request</p>
-                    </div>
-
-                    <form class="p-8 space-y-8">
-                        <!-- Personal Information -->
-                        <div class="space-y-4">
-                            <div class="flex items-center mb-4">
-                                <i class="material-icons text-blue-600 mr-2">person</i>
-                                <h2 class="text-xl font-semibold text-gray-700">Personal Information</h2>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contact Information -->
-                        <div class="space-y-4">
-                            <div class="flex items-center mb-4">
-                                <i class="material-icons text-blue-600 mr-2">contact_mail</i>
-                                <h2 class="text-xl font-semibold text-gray-700">Contact Information</h2>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                                    <input type="email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                    <p class="mt-1 text-sm text-gray-500">This will be your login username</p>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                                    <input type="tel" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Company Information -->
-                        <div class="space-y-4">
-                            <div class="flex items-center mb-4">
-                                <i class="material-icons text-blue-600 mr-2">business</i>
-                                <h2 class="text-xl font-semibold text-gray-700">Company Information</h2>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
-                                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Job Title *</label>
-                                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Company Address</label>
-                                    <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Request Details -->
-                        <div class="space-y-4">
-                            <div class="flex items-center mb-4">
-                                <i class="material-icons text-blue-600 mr-2">description</i>
-                                <h2 class="text-xl font-semibold text-gray-700">Request Details</h2>
+                <form id="requestForm" class="p-8 space-y-8" onsubmit="showModal(event)">
+                    <!-- Personal Information -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-gray-700 flex items-center">
+                            <i class="fas fa-user-circle mr-2 text-blue-600"></i> Personal Information
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Purpose of Access *</label>
-                                <textarea 
-                                    class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32" 
-                                    placeholder="Please describe why you need access to the system..."
-                                    required></textarea>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                <input type="text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-gray-700 flex items-center">
+                            <i class="fas fa-envelope mr-2 text-blue-600"></i> Contact Information
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                <input type="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                <p class="mt-1 text-sm text-gray-500">This will be your login username</p>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Additional Comments</label>
-                                <textarea 
-                                    class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-24" 
-                                    placeholder="Any additional information you'd like to provide..."></textarea>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
                             </div>
                         </div>
-
-                        <!-- Terms and Submit -->
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <input type="checkbox" class="mt-1 mr-2" required>
-                                <p class="text-sm text-gray-600">
-                                    I confirm that all information provided is accurate and I understand that my request will be reviewed by the system administrator.
-                                </p>
-                            </div>
-                            <div class="flex justify-end">
-                                <button type="submit" 
-                                        class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center">
-                                    <i class="material-icons mr-2">send</i>
-                                    Submit Request
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Help Section -->
-                <div class="max-w-4xl mx-auto mt-8 bg-blue-50 rounded-xl p-6">
-                    <div class="flex items-center mb-4">
-                        <i class="material-icons text-blue-600 mr-2">help</i>
-                        <h2 class="text-xl font-semibold text-gray-700">Need Help?</h2>
                     </div>
-                    <p class="text-gray-600">
-                        If you have any questions about the access request process, please contact our support team:
-                        <br>
-                        Email: support@dvla.com
-                        <br>
-                        Phone: +233 (0) 123 456 789
-                    </p>
+
+                    <!-- Company Information -->
+                    <div class="space-y-4">
+                        <div class="flex items-center mb-4">
+                            <i class="material-icons text-blue-600 mr-2">business</i>
+                            <h2 class="text-xl font-semibold text-gray-700">Company Information</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                                <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Job Title *</label>
+                                <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Company Address</label>
+                                <input type="text" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Request Details -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-gray-700 flex items-center">
+                            <i class="fas fa-paper-plane mr-2 text-blue-600"></i> Request Details
+                        </h3>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Purpose of Access *</label>
+                            <textarea 
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32" 
+                                placeholder="Please describe why you need access to the system..."
+                                required></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Comments</label>
+                            <textarea 
+                                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-24" 
+                                placeholder="Any additional information you'd like to provide..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Submit -->
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-2" required>
+                            <p class="text-sm text-gray-600">
+                                I confirm that all information provided is accurate and I understand that my request will be reviewed by the system administrator.
+                            </p>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" 
+                                    class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center shadow-lg">
+                                <i class="material-icons mr-2">send</i>
+                                Submit Request
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Help Section -->
+            <div class="max-w-4xl mx-auto mt-8 bg-blue-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                    <i class="material-icons text-blue-600 mr-2">help</i>
+                    <h2 class="text-xl font-semibold text-gray-700">Need Help?</h2>
                 </div>
-            </main>
+                <p class="text-gray-600">
+                    If you have any questions about the access request process, please contact our support team:
+                    <br>
+                    Email: support@dvla.com
+                    <br>
+                    Phone: +233 (0) 123 456 789
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 text-center py-4 mt-8">
+        <p class="text-gray-600">© 2023 DVLA. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Submission Confirmation -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="text-xl font-bold mb-4">Request Submitted!</h2>
+            <p class="mb-4">Thank you for your request. Your information has been submitted successfully. Credentials will be sent to your email shortly.</p>
+            <button onclick="window.location.href='index.html'" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                Go to Login
+            </button>
         </div>
     </div>
+
+    <script>
+        function showModal(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('confirmationModal').style.display = 'block'; // Show modal
+        }
+
+        function closeModal() {
+            document.getElementById('confirmationModal').style.display = 'none'; // Hide modal
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('confirmationModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html> 
