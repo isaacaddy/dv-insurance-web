@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Dashboard</title>
+    <title>Validate DV Plate</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,6 +22,17 @@
         .logo:hover {
             transform: scale(1.1);
         }
+        .nav-link {
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .scrollable-table {
+            max-height: 400px;
+            overflow-y: auto;
+        }
         .sidebar-link {
             display: flex;
             align-items: center;
@@ -32,11 +43,6 @@
         .sidebar-link:hover {
             opacity: 1;
             background-color: rgba(255, 255, 255, 0.1);
-        }
-        .sidebar-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-left: 4px solid white;
-            opacity: 1;
         }
         .modal {
             display: none;
@@ -68,6 +74,11 @@
         .close:hover {
             color: #000;
         }
+        .sidebar-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -93,12 +104,24 @@
                         <i class="material-icons mr-3">description</i>
                         <span>Plate Details</span>
                     </a>
-                    <a href="searchplate.html" class="sidebar-link p-3 rounded-lg active">
-                        <i class="material-icons mr-3">description</i>
+                    <a href="validate.html" class="sidebar-link p-3 rounded-lg">
+                        <i class="material-icons mr-3" style="width: 20px; height: 20px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor">
+                                    <path d="M11.998 2C8.99 2 7.04 4.019 4.734 4.755c-.938.3-1.407.449-1.597.66c-.19.21-.245.519-.356 1.135c-1.19 6.596 1.41 12.694 7.61 15.068c.665.255.998.382 1.61.382s.946-.128 1.612-.383c6.199-2.373 8.796-8.471 7.606-15.067c-.111-.616-.167-.925-.357-1.136s-.658-.36-1.596-.659C16.959 4.019 15.006 2 11.998 2"/>
+                                    <path d="M10 12.5s.5 0 1 1c0 0 1.588-2.5 3-3"/>
+                                    <path d="M17 12a5 5 0 1 1-10 0a5 5 0 0 1 10 0"/>
+                                </g>
+                            </svg>
+                        </i>
                         <span>Validate</span>
                     </a>
-                    <a href="validate.html" class="sidebar-link p-3 rounded-lg">
-                        <i class="material-icons mr-3">description</i>
+                    <a href="searchplate.html" class="sidebar-link p-3 rounded-lg active">
+                        <i class="material-icons mr-3" style="width: 20px; height: 20px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M325.8 0C223 0 139.6 83.4 139.6 186.2c0 33.5 9 64.8 24.4 92L0 442.2l23.3 46.5L69.8 512l164-164c27.1 15.5 58.5 24.4 92 24.4C428.6 372.4 512 289 512 186.2S428.6 0 325.8 0zm0 314.2c-70.7 0-128-57.3-128-128s57.3-128 128-128s128 57.3 128 128s-57.3 128-128 128z"/>
+                            </svg>
+                        </i>
                         <span>Search Plate</span>
                     </a>
                 </nav>
@@ -132,64 +155,65 @@
                 <section class="bg-white p-6 shadow-md rounded-lg">
                     <div class="flex justify-between items-center border-b pb-4 mb-6">
                         <div class="flex space-x-6">
-                            <a class="text-blue-600 border-b-2 border-blue-600 pb-1 font-medium" href="#" id="validateTab">Validate</a>
-                            <a class="text-gray-600 hover:text-gray-800 transition-colors duration-200" href="#" id="historyTab">History</a>
+                            <a class="text-blue-600 border-b-2 border-blue-600 pb-1 font-medium" href="#">Validated Plates</a>
+                            <!--<a class="text-gray-600 hover:text-gray-800 transition-colors duration-200" href="#">History</a> -->
+                        </div>
+                        <div class="relative">
+                            <input class="border rounded-full py-2 px-4 pl-10 w-64 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" 
+                                   placeholder="Search by Plate Number" 
+                                   type="text"/>
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
                         </div>
                     </div>
-                    
-                    <!-- Validate Section -->
-                    <div id="validateSection">
-                        <label class="block text-xl font-semibold mb-4 text-gray-800" for="dv-plate">Enter DV Plate Number</label>
-                        <input class="border border-gray-300 p-3 w-full mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" 
-                               id="dv-plate" 
-                               placeholder="Add text" 
-                               type="text"/>
-                        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">Validate</button>
-                    </div>
-
-                    <!-- History Section -->
-                    <div id="historySection" class="hidden">
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full bg-white rounded-lg">
-                                <thead>
-                                    <tr class="bg-gray-50 border-b">
-                                        <th class="py-3 px-4 text-left font-medium text-gray-700">Date</th>
-                                        <th class="py-3 px-4 text-left font-medium text-gray-700">DV Plate Number</th>
-                                        <th class="py-3 px-4 text-left font-medium text-gray-700">Status</th>
-                                        <th class="py-3 px-4 text-left font-medium text-gray-700">Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="hover:bg-gray-50 transition duration-200">
-                                        <td class="py-3 px-4 border-b">22/01/2024 10:30 AM</td>
-                                        <td class="py-3 px-4 border-b">DV 1234 A</td>
-                                        <td class="py-3 px-4 border-b">
-                                            <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 text-sm">Valid</span>
-                                        </td>
-                                        <td class="py-3 px-4 border-b">
-                                            <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50 transition duration-200">
-                                        <td class="py-3 px-4 border-b">22/01/2024 09:15 AM</td>
-                                        <td class="py-3 px-4 border-b">DV 5678 B</td>
-                                        <td class="py-3 px-4 border-b">
-                                            <span class="px-2 py-1 rounded-full bg-red-100 text-red-800 text-sm">Invalid</span>
-                                        </td>
-                                        <td class="py-3 px-4 border-b">
-                                            <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="scrollable-table">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-gray-600 border-b">
+                                    <th class="py-3 px-4">Date</th>
+                                    <th class="py-3 px-4">DV Plate Number</th>
+                                    <th class="py-3 px-4">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <i class="fas fa-check-square mr-2 text-green-500"></i>
+                                        22/01/2025 10:00am
+                                    </td>
+                                    <td class="py-3 px-4">DV 3243A</td>
+                                    <td class="py-3 px-4">
+                                        <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <i class="fas fa-check-square mr-2 text-green-500"></i>
+                                        22/01/2025 08:35am
+                                    </td>
+                                    <td class="py-3 px-4">DV 1243R</td>
+                                    <td class="py-3 px-4">
+                                        <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
+                                    </td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-3 px-4 flex items-center">
+                                        <i class="fas fa-check-square mr-2 text-green-500"></i>
+                                        22/01/2025 08:27am
+                                    </td>
+                                    <td class="py-3 px-4">DV 9876A</td>
+                                    <td class="py-3 px-4">
+                                        <i class="fas fa-info-circle text-blue-600 cursor-pointer hover:text-blue-800"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
             </main>
         </div>
     </div>
 
-    <!-- Modal for plate details -->
+    <!-- Add this before closing body tag -->
     <div id="plateModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -219,57 +243,82 @@
                     <p class="font-semibold">Vehicle Model:</p>
                     <p id="modalModel" class="text-gray-600">Camry</p>
                 </div>
+                <div>
+                    <p class="font-semibold">Form D Serial Number:</p>
+                    <p id="modalFormDSerial" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <p class="font-semibold">Factory Serial Number:</p>
+                    <p id="modalFactorySerial" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <p class="font-semibold">DVLA Serial Number:</p>
+                    <p id="modalDVLASerial" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <p class="font-semibold">Validity:</p>
+                    <p id="modalValidity" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <p class="font-semibold">Activation Status:</p>
+                    <p id="modalActivationStatus" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <p class="font-semibold">Policy Number:</p>
+                    <p id="modalPolicyNumber" class="text-gray-600"></p>
+                </div>
+                <div>
+                    <p class="font-semibold">Expiry Date:</p>
+                    <p id="modalExpiryDate" class="text-gray-600"></p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Tab switching functionality
-        const validateTab = document.getElementById('validateTab');
-        const historyTab = document.getElementById('historyTab');
-        const validateSection = document.getElementById('validateSection');
-        const historySection = document.getElementById('historySection');
-
-        validateTab.addEventListener('click', function(e) {
-            e.preventDefault();
-            validateSection.classList.remove('hidden');
-            historySection.classList.add('hidden');
-            validateTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
-            historyTab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
-        });
-
-        historyTab.addEventListener('click', function(e) {
-            e.preventDefault();
-            validateSection.classList.add('hidden');
-            historySection.classList.remove('hidden');
-            historyTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
-            validateTab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
-        });
-
-        // Modal functionality
+        // Get modal elements
         const modal = document.getElementById('plateModal');
         const closeBtn = document.getElementsByClassName('close')[0];
         const detailsIcons = document.querySelectorAll('.fa-info-circle');
 
+        // Add click event to all details icons
         detailsIcons.forEach(icon => {
             icon.addEventListener('click', function() {
                 const row = this.closest('tr');
                 const plateNumber = row.querySelector('td:nth-child(2)').textContent;
                 const date = row.querySelector('td:nth-child(1)').textContent;
                 const status = row.querySelector('td:nth-child(3)').textContent;
-                
+
+                // Assuming you have these values in your row or you can fetch them accordingly
+                const formDSerial = "12345"; // Replace with actual data source
+                const factorySerial = "67890"; // Replace with actual data source
+                const dvlaSerial = "54321"; // Replace with actual data source
+                const validity = "Valid"; // Replace with actual data source
+                const activationStatus = "Active"; // Replace with actual data source
+                const policyNumber = "POL123456"; // Replace with actual data source
+                const expiryDate = "01/01/2025"; // Replace with actual data source
+
                 document.getElementById('modalPlateNumber').textContent = plateNumber;
                 document.getElementById('modalDate').textContent = date;
                 document.getElementById('modalStatus').textContent = status;
-                
+                document.getElementById('modalFormDSerial').textContent = formDSerial;
+                document.getElementById('modalFactorySerial').textContent = factorySerial;
+                document.getElementById('modalDVLASerial').textContent = dvlaSerial;
+                document.getElementById('modalValidity').textContent = validity;
+                document.getElementById('modalActivationStatus').textContent = activationStatus;
+                document.getElementById('modalPolicyNumber').textContent = policyNumber;
+                document.getElementById('modalExpiryDate').textContent = expiryDate;
+
                 modal.style.display = 'block';
             });
         });
 
+        // Close modal when clicking (X)
         closeBtn.onclick = function() {
             modal.style.display = 'none';
         }
 
+        // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
