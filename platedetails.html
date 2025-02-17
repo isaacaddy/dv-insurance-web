@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .sidebar {
             background-color: #1a237e; /* Deep blue color */
@@ -108,7 +109,7 @@
                     <span>Logout</span>
                 </a>
                 <div class="text-center text-white text-sm mt-4 opacity-75">
-                    © 2024 DVLA Club
+                    © 2025 DVLA Club
                 </div>
             </div>
         </div>
@@ -189,15 +190,18 @@
                         </button>
                     </div>
 
-                
+                    <div id="errorMessage" class="text-red-600 hidden"></div>
                 </div>
             </main>
         </div>
     </div>
 
     <script>
-        // Retrieve the plate details from local storage
+        // Configure Axios defaults
+        axios.defaults.baseURL = 'https://api-gw.dila.generisdevelopers.com';
+
         const plateDetails = JSON.parse(localStorage.getItem('plateDetails'));
+        const errorMessage = document.getElementById('errorMessage');
 
         if (plateDetails) {
             document.getElementById('modalPlateNumber').value = plateDetails.plateNumber;
@@ -208,6 +212,31 @@
             document.getElementById('modalActivationStatus').value = plateDetails.activationStatus;
             document.getElementById('modalPolicyNumber').value = plateDetails.policyNumber;
             document.getElementById('modalExpiryDate').value = plateDetails.expiryDate;
+
+            // Optional: Refresh plate details from API
+            async function refreshPlateDetails() {
+                try {
+                    const response = await axios.get(`/webhook/api/v1/plates-cover`, {
+                        params: { dv_number: plateDetails.plateNumber },
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    // Update the displayed data with fresh data
+                    const freshDetails = response.data;
+                    // Update fields...
+                    
+                } catch (error) {
+                    console.error('Error refreshing details:', error);
+                    // Handle error...
+                }
+            }
+
+        } else {
+            errorMessage.textContent = 'No plate details found. Please validate a plate number first.';
+            errorMessage.classList.remove('hidden');
         }
     </script>
 </body>
