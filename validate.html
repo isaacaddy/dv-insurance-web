@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .sidebar {
             background-color: #1a237e; /* Deep blue color */
@@ -123,7 +124,7 @@
                     <span>Logout</span>
                 </a>
                 <div class="text-center text-white text-sm mt-4 opacity-75">
-                    © 2024 DVLA Club
+                    © 2025 DVLA Club
                 </div>
             </div>
         </div>
@@ -158,6 +159,8 @@
                                placeholder="Add text" 
                                type="text"/>
                         <button id="validateButton" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">Validate</button>
+                        <div id="loadingIndicator" class="hidden">Loading...</div>
+                        <div id="errorMessage" class="text-red-600 mt-2 hidden"></div>
                     </div>
 
                     <!-- History Section -->
@@ -174,7 +177,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="hover:bg-gray-50 transition duration-200">
-                                        <td class="py-3 px-4 border-b">22/01/2024 10:30 AM</td>
+                                        <td class="py-3 px-4 border-b">22/01/2025 10:30 AM</td>
                                         <td class="py-3 px-4 border-b">DV 1234 A</td>
                                         <td class="py-3 px-4 border-b">
                                             <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 text-sm">Valid</span>
@@ -184,7 +187,7 @@
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-gray-50 transition duration-200">
-                                        <td class="py-3 px-4 border-b">22/01/2024 09:15 AM</td>
+                                        <td class="py-3 px-4 border-b">22/01/2025N 09:15 AM</td>
                                         <td class="py-3 px-4 border-b">DV 5678 B</td>
                                         <td class="py-3 px-4 border-b">
                                             <span class="px-2 py-1 rounded-full bg-red-100 text-red-800 text-sm">Invalid</span>
@@ -333,27 +336,87 @@
             }
         }
 
-        document.getElementById('validateButton').addEventListener('click', function() {
-            // Get the plate number from the input field
+        // Configure Axios defaults
+        axios.defaults.baseURL = 'https://api-gw.dila.generisdevelopers.com';
+        
+        document.getElementById('validateButton').addEventListener('click', async function() {
             const plateNumber = document.getElementById('dv-plate').value;
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const errorMessage = document.getElementById('errorMessage');
 
-            // Store the plate number and other details in local storage
-            const details = {
-                plateNumber: plateNumber,
-                formDSerial: "12345", // Replace with actual data source
-                factorySerial: "67890", // Replace with actual data source
-                dvlaSerial: "54321", // Replace with actual data source
-                validity: "Valid", // Replace with actual data source
-                activationStatus: "Active", // Replace with actual data source
-                policyNumber: "POL123456", // Replace with actual data source
-                expiryDate: "2025-01-01" // Replace with actual data source
-            };
+            // Show loading indicator and disable button
+            loadingIndicator.classList.remove('hidden');
+            this.disabled = true;
+            errorMessage.classList.add('hidden');
 
-            localStorage.setItem('plateDetails', JSON.stringify(details));
+            try {
+                const response = await axios.get(`/webhook/api/v1/plates-cover`, {
+                    params: { dv_number: plateNumber },
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
 
-            // Redirect to platedetails.html
-            window.location.href = 'platedetails.html';
+                const details = {
+                    plateNumber: response.data.dvNumber,
+                    formDSerial: response.data.formDSerial,
+                    factorySerial: response.data.factorySerial,
+                    dvlaSerial: response.data.dvlaSerial,
+                    validity: response.data.validity,
+                    activationStatus: response.data.activationStatus,
+                    policyNumber: response.data.policyNumber,
+                    expiryDate: response.data.expiryDate
+                };
+
+                localStorage.setItem('plateDetails', JSON.stringify(details));
+                window.location.href = 'platedetails.html';
+
+            } catch (error) {
+                console.error('Error:', error);
+                let errorMsg = 'Failed to validate the plate number.';
+                
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    errorMsg = error.response.data.message || errorMsg;
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    errorMsg = 'No response received from server. Please check your connection.';
+                }
+                
+                errorMessage.textContent = errorMsg;
+                errorMessage.classList.remove('hidden');
+            } finally {
+                // Hide loading indicator and enable button
+                loadingIndicator.classList.add('hidden');
+                this.disabled = false;
+            }
         });
+
+        // Function to get authentication token
+        async function getAuthToken() {
+            try {
+                const response = await axios.post('/realms/dila/protocol/openid-connect/token', {
+                    grant_type: 'client_credentials',
+                    client_id: 'dila-client',
+                    client_secret: 'EqNqnlAQJ4sZf7Ib2dCNC5tRU2kiIipw'
+                }, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+
+                localStorage.setItem('access_token', response.data.access_token);
+            } catch (error) {
+                console.error('Auth Error:', error);
+                errorMessage.textContent = 'Authentication failed. Please try again.';
+                errorMessage.classList.remove('hidden');
+            }
+        }
+
+        // Get auth token when page loads
+        getAuthToken();
     </script>
 </body>
 </html>
